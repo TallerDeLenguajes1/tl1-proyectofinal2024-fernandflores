@@ -1,51 +1,46 @@
 ﻿// See https://aka.ms/new-console-template for more information
+
+using System.Diagnostics;
 using System.Text.Json;
+using APIS;
+using juego;
+var servicioAPI= new Api();
+var argentina= await servicioAPI.GetArgentoAsync();
+Console.WriteLine("-------------------MENU--------------------");
+Console.WriteLine("1: jugar");
+Console.WriteLine("2: guardar listado de personajes");
 
-
-var player= await GetCurrencyRateAsync();
-static async Task<argentApi> GetCurrencyRateAsync()
+argentina.Provincias[0].stats=new Caracteristicas(); // para buenos aires uso constructor 0
+for (int i = 1; i < argentina.Provincias.Count; i++)
 {
- var url= "https://apis.datos.gob.ar/georef/api/provincias?campos=id,nombre";
- try
- {
-    HttpClient client= new HttpClient();
-    HttpResponseMessage response= await client.GetAsync(url); 
-    response.EnsureSuccessStatusCode();  
-    string responseBody= await response.Content.ReadAsStringAsync();
-    argentApi argentina= JsonSerializer.Deserialize<argentApi>(responseBody); 
-    return argentina;
- }
- catch (HttpRequestException e) 
- {
-    Console.WriteLine("problemas con acceso a la API");
-    Console.WriteLine("mensaje: {0}", e.Message);
-    return null;
- }
+        argentina.Provincias[i]= argentina.crearPersonaje(argentina.Provincias[i]); //la funcion retorna la provincia ya creada con el constructor
 }
-
-/*
-foreach( var item in player.Provincias)
-{
-    Console.WriteLine(item.Id);
-    Console.WriteLine(item.Nombre);
-    Console.WriteLine(item.stats.Armadura);
-    item.stats.Armadura+=40;
-    Console.WriteLine(item.stats.Armadura);
-}
-Console.WriteLine(player.Total);
-foreach (var item2 in  player.Provincias)
-{
-    Console.WriteLine(item2.Nombre+" "+item2.stats.Armadura);
-}*/
-player.incializarJuego();
-foreach (var item in player.Provincias)
-{
-    Console.WriteLine($"nombre: {item.Nombre}");
-    Console.WriteLine("transporte publico: "+item.stats.TransportePublico);
-    Console.WriteLine($"inteligencia: {item.stats.Inteligencia}");
-    Console.WriteLine($"fuerzaas armadas: {item.stats.FuerzasArmada}");
-    Console.WriteLine($"calidad de vida: {item.stats.CalidadDeVida}");
-    Console.WriteLine($"sistema de salud: {item.stats.SistemaDeSalud}");
-    Console.WriteLine($"poblacion: {item.stats.Poblacion}");
-    Console.WriteLine("-----------....--------.....------");
-}
+argentina.mostrarProvincias(argentina.Provincias);
+var arch= new PersonajeJson();
+string buff= arch.crearArchivoJson(argentina);
+arch.guardarPersonaje(argentina, "guardadoNuevo"); 
+var prueba= new argentApi();
+prueba= arch.leerPersonajes("guardadoNuevo.txt");
+Console.WriteLine("PROBANDO LEER");
+    foreach (var item in prueba.Provincias)
+    {
+        Console.WriteLine(item.Nombre);
+        Console.WriteLine("calidad de vida: "+item.stats.CalidadDeVida);
+        Console.WriteLine("fuerza: "+item.stats.FuerzasArmada);
+        Console.WriteLine("destreza: "+item.stats.Inteligencia);
+        Console.WriteLine("vida: "+item.stats.Poblacion);
+        Console.WriteLine("Sistema de salud: "+item.stats.SistemaDeSalud);
+        Console.WriteLine("transporte publico: "+item.stats.TransportePublico);
+    }
+//List<argJson> ciudades= await leerPersonajes("guardado2.txt");
+// foreach (var item in ciudades)
+// {
+//     Console.WriteLine(item.Nombre);
+//     Console.WriteLine(item.Id);
+//     Console.WriteLine(item.Stats.CalidadDeVida);
+//     Console.WriteLine(item.Stats.FuerzasArmada);
+//     Console.WriteLine(item.Stats.Inteligencia);
+//     Console.WriteLine(item.Stats.Poblacion);
+    
+    
+// }

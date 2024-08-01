@@ -12,3 +12,4 @@ C:\Users\chinn\Documents\TALLER_DE_LENGUAJES_I\proyecto_final\tl1-proyectofinal2
 C:\Users\chinn\Documents\TALLER_DE_LENGUAJES_I\proyecto_final\tl1-proyectofinal2024-fernandflores\obj\Debug\net8.0\tl1-proyectofinal2024-fernandflores.pdb
 C:\Users\chinn\Documents\TALLER_DE_LENGUAJES_I\proyecto_final\tl1-proyectofinal2024-fernandflores\obj\Debug\net8.0\tl1-proyectofinal2024-fernandflores.genruntimeconfig.cache
 C:\Users\chinn\Documents\TALLER_DE_LENGUAJES_I\proyecto_final\tl1-proyectofinal2024-fernandflores\obj\Debug\net8.0\ref\tl1-proyectofinal2024-fernandflores.dll
+C:\Users\chinn\Documents\TALLER_DE_LENGUAJES_I\proyecto_final\tl1-proyectofinal2024-fernandflores\obj\Debug\net8.0\tl1-proyectofinal2024-fernandflores.sourcelink.json

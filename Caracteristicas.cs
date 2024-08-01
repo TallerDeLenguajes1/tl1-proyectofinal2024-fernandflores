@@ -8,8 +8,18 @@ public class Caracteristicas
     private double sistemaDeSalud; // armadura
     private double poblacion; // salud
 
-    public Caracteristicas(double transportePublico, double inteligencia, double fuerzasArmada, double calidadDeVida, double sistemaDeSalud, double poblacion)
+    public Caracteristicas() //constructor 0
     {
+        transportePublico=0;
+        inteligencia=0;
+        fuerzasArmada=0;
+        calidadDeVida=0;
+        sistemaDeSalud=0;
+        poblacion=0;
+    }
+
+    public Caracteristicas(double transportePublico, double inteligencia, double fuerzasArmada, double calidadDeVida, double sistemaDeSalud, double poblacion)
+    { //constructor
         this.transportePublico=transportePublico;
         this.inteligencia= inteligencia;
         this.fuerzasArmada= fuerzasArmada;
