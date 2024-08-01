@@ -2,72 +2,53 @@
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json;
    using System.Text.Json.Serialization;
-namespace juego{
-public class PersonajeJson
+namespace archivosJson
 {
-    public string crearArchivoJson(argentApi prov)
+    public class PersonajeJson
     {
-        return JsonSerializer.Serialize(prov);
-    }
-    public void guardarPersonaje(argentApi prov, string nombreArchivo) //para usar lista solo cambiar List<Provincia> prov en lugar de argentApi y al usar mandar solo la lista como parametro 
-    {
-        string provstring= crearArchivoJson(prov);
-        FileStream archivo= new FileStream(nombreArchivo+".txt", FileMode.Create);
-        using (StreamWriter strwriter= new StreamWriter (archivo))
+        public string crearArchivoJson(argentApi dato)
         {
-            strwriter.WriteLine("{0}", provstring);
-            strwriter.Close();
+            return JsonSerializer.Serialize(dato);
         }
-    }
-    public argentApi leerPersonajes(string nombreArchivo)
-    {
-        string cadenaPersonajes;
-        string ruta= nombreArchivo;
-        using (var archivoOpnen = new FileStream(ruta, FileMode.Open))
-        {
-            using (var aux= new StreamReader(archivoOpnen))
+        public void guardarPersonaje(argentApi dato, string nombreArchivo) //para usar lista solo cambiar List<Provincia> prov en lugar de argentApi y al usar mandar solo la lista como parametro 
+        {  //GUARDA EL ARCHIVO JSON.TXT (SERIALIZACION)
+            string provstring= crearArchivoJson(dato);
+            FileStream archivo= new FileStream(nombreArchivo+".txt", FileMode.Create);
+            using (StreamWriter strwriter= new StreamWriter (archivo))
             {
-                cadenaPersonajes= aux.ReadToEnd();
-                archivoOpnen.Close();
+                strwriter.WriteLine("{0}", provstring);
+                strwriter.Close();
             }
         }
-        var listadoProvincias= JsonSerializer.Deserialize<argentApi>(cadenaPersonajes);
-        return listadoProvincias;
+        public argentApi leerPersonajes(string nombreArchivo) //CREA A PARTIR DEL ARCHIVO JSON.TXT LAS CLASES (DESERIALIZACION)
+        {
+            string cadenaPersonajes;
+            string ruta= nombreArchivo;
+            using (var archivoOpnen = new FileStream(ruta, FileMode.Open))
+            {
+                using (var aux= new StreamReader(archivoOpnen))
+                {
+                    cadenaPersonajes= aux.ReadToEnd();
+                    archivoOpnen.Close();
+                }
+            }
+            var listadoProvincias= JsonSerializer.Deserialize<argentApi>(cadenaPersonajes); // mando argentApi ya que el archivo json debe coincidir estructuralmente con la clase (en este caso nuestra clase es ArgenApi)
+            return listadoProvincias;
+        }
+        
+        public bool existenciaDeArchivo(string nombreArchivo)
+        {
+            if (File.Exists(nombreArchivo))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
-}
 
-// Root myDeserializedClass = JsonSerializer.Deserialize<List<Root>>(myJsonResponse);
-    public class argJson
-    {
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        [JsonPropertyName("nombre")]
-        public string Nombre { get; set; }
-
-        [JsonPropertyName("stats")]
-        public provJson Stats { get; set; }
-    }
-
-    public class provJson
-    {
-        [JsonPropertyName("TransportePublico")]
-        public int TransportePublico { get; set; }
-
-        [JsonPropertyName("Inteligencia")]
-        public int Inteligencia { get; set; }
-
-        [JsonPropertyName("FuerzasArmada")]
-        public int FuerzasArmada { get; set; }
-
-        [JsonPropertyName("CalidadDeVida")]
-        public int CalidadDeVida { get; set; }
-
-        [JsonPropertyName("SistemaDeSalud")]
-        public int SistemaDeSalud { get; set; }
-
-        [JsonPropertyName("Poblacion")]
-        public int Poblacion { get; set; }
-    }
+ 
 
 }

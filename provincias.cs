@@ -15,7 +15,7 @@
         
     }
 
-    public class argentApi //fabrica de personajes 
+    public class argentApi //fabrica de personajes (CLASE PRINCIPAL)
     {
         [JsonPropertyName("cantidad")]
         public int Cantidad { get; set; }
@@ -26,22 +26,7 @@
 
         [JsonPropertyName("total")]
         public int Total { get; set; }
-/*
-       public void incializarJuego()
-        {
-            Random ramdon= new Random();
-             
-            Provincias[0].stats= new Caracteristicas(0,0,0,0,0,0);
-            for (int i = 1; i < Provincias.Count; i++)
-            {
-                int transporte= ramdon.Next(1,11);
-                int inteligencia= ramdon.Next(1,6);
-                int fuerza= ramdon.Next(1,11);
-                int calidadVida= ramdon.Next(1,11);
-                int sistemaSalud= ramdon.Next(1,11);
-                Provincias[i].stats= new Caracteristicas(transporte, inteligencia, fuerza, calidadVida, sistemaSalud,100);
-            }
-        }*/
+
         public Provincia crearPersonaje(Provincia personaje)
         {
             Random random= new Random();
