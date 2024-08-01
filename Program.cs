@@ -4,10 +4,11 @@ using System.Diagnostics;
 using System.Text.Json;
 using APIS;
 using archivosJson;
+using menu;
 var servicioAPI= new Api();
 var archivoJson= new PersonajeJson();
 var argentina= new argentApi();
-
+var menu= new Menu();
 
 
 if (archivoJson.existenciaDeArchivo("guardadoNuevo.txt"))
@@ -24,15 +25,8 @@ else
    {
       argentina.Provincias[i]= argentina.crearPersonaje(argentina.Provincias[i]); //la funcion retorna la provincia ya creada con el constructor
    }  
+   argentina.mostrarProvincias(argentina.Provincias);
+   archivoJson.guardarPersonaje(argentina, "guardadoNuevo"); //guardar las clases en archivo json
 }
-argentina.mostrarProvincias(argentina.Provincias);
-archivoJson.guardarPersonaje(argentina, "guardadoNuevo"); //guardar las clases en archivo json
-public class Menu
-{
-   public void mostrarMenu()
-   {
-      Console.WriteLine("-------------------MENU--------------------");
-      Console.WriteLine("1: jugar");
-      Console.WriteLine("2: guardar listado de personajes");      
-   }
-}
+menu.mostrarMenu();
+//Console.ReadKey();
