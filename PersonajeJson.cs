@@ -4,15 +4,16 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 namespace archivosJson
 {
+    // EN ESTE ARCHIVO TRABAJAMOS LOS ARCHIVOS JSON PARA  CREARLOS Y GUARDARLOS O LEERLOS 
     public class PersonajeJson
     {
-        public string crearArchivoJson(argentApi dato)
+        public string CrearArchivoJson(argentApi dato)
         {
             return JsonSerializer.Serialize(dato);
         }
-        public void guardarPersonaje(argentApi dato, string nombreArchivo) //para usar lista solo cambiar List<Provincia> prov en lugar de argentApi y al usar mandar solo la lista como parametro 
+        public void GuardarPersonaje(argentApi dato, string nombreArchivo) //para usar lista solo cambiar List<Provincia> prov en lugar de argentApi y al usar mandar solo la lista como parametro 
         {  //GUARDA EL ARCHIVO JSON.TXT (SERIALIZACION)
-            string provstring= crearArchivoJson(dato);
+            string provstring= CrearArchivoJson(dato);
             FileStream archivo= new FileStream(nombreArchivo+".txt", FileMode.Create);
             using (StreamWriter strwriter= new StreamWriter (archivo))
             {
@@ -20,7 +21,7 @@ namespace archivosJson
                 strwriter.Close();
             }
         }
-        public argentApi leerPersonajes(string nombreArchivo) //CREA A PARTIR DEL ARCHIVO JSON.TXT LAS CLASES (DESERIALIZACION)
+        public argentApi LeerPersonajes(string nombreArchivo) //CREA A PARTIR DEL ARCHIVO JSON.TXT LAS CLASES (DESERIALIZACION)
         {
             string cadenaPersonajes;
             string ruta= nombreArchivo;
@@ -36,7 +37,7 @@ namespace archivosJson
             return listadoProvincias;
         }
         
-        public bool existenciaDeArchivo(string nombreArchivo)
+        public bool ExistenciaDeArchivo(string nombreArchivo)
         {
             if (File.Exists(nombreArchivo))
             {
