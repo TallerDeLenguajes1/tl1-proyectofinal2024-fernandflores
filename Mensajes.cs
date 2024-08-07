@@ -74,14 +74,14 @@ namespace asciiArtString
     {
       var random= new Random();
       int i= random.Next(0,itemsPerdedor.Length-1);
-      Console.WriteLine("---------PELEA FINALIZADA--------");
+      Console.WriteLine("\n\t\t>>>>>>>>>>>> PELEA FINALIZADA <<<<<<<<<<<<<<<<<");
       Console.ForegroundColor=ConsoleColor.Blue;
-      Console.WriteLine("Gano la provincia de: "+ganador.Nombre+"poblacion restante: "+saludRestante);
+      Console.WriteLine("Gano la provincia de: "+ganador.Nombre+" poblacion restante: "+saludRestante);
       Console.ResetColor();
       Console.ForegroundColor=ConsoleColor.Red;
       Console.WriteLine("La provincia perdedora es: "+perdedor.Nombre);
       Console.ResetColor();
-      Console.WriteLine("total de rounds: "+rondas);
+      Console.WriteLine("total de rounds: "+(rondas-1));
       Console.WriteLine("\n");
       Console.WriteLine("Por generosidad de nuestro admin hemos decidido premiar al ganador reviviendo a su poblacion y con una mejora en sus estadisticas.");
       Console.WriteLine("las nuevas estadisticas de la provincia de "+ganador.Nombre+" son:");
@@ -90,7 +90,7 @@ namespace asciiArtString
       Console.WriteLine("calidad de vida (nivel): "+ganador.stats.CalidadDeVida);
       Console.WriteLine("sistema de salud (armadura): "+ganador.stats.SistemaDeSalud);
       Console.WriteLine("poblacion: (salud)"+ganador.stats.Poblacion);
-      Console.WriteLine("---------------------------------");
+      Console.WriteLine("\n\t\t>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<");
       Console.WriteLine("\n");
       Console.WriteLine("nuestro admin a decidido que una provincia perdedora no puede formar parte de este gran pais, por lo que "+perdedor.Nombre+" fue vendido a Uruguay por "+itemsPerdedor[i]);
       Console.WriteLine("\n");

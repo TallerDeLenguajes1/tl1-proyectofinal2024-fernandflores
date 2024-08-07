@@ -4,6 +4,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 namespace archivosJson
 {
+    using historialGanador;
     // EN ESTE ARCHIVO TRABAJAMOS LOS ARCHIVOS JSON PARA  CREARLOS Y GUARDARLOS O LEERLOS 
     public class PersonajeJson
     {
@@ -36,7 +37,35 @@ namespace archivosJson
             var listadoProvincias= JsonSerializer.Deserialize<argentApi>(cadenaPersonajes); // mando argentApi ya que el archivo json debe coincidir estructuralmente con la clase (en este caso nuestra clase es ArgenApi)
             return listadoProvincias;
         }
-        
+        public string CrearArchivoHistorialJson(List<Ganador> dato)
+        {
+            return JsonSerializer.Serialize(dato);
+        }
+        public void GuardarGanador(List<Ganador> dato, string nombreArchivo)
+        {
+            string historialString= CrearArchivoHistorialJson(dato);
+            FileStream archivo= new FileStream(nombreArchivo+".txt", FileMode.Append);
+            using (StreamWriter strwriter= new StreamWriter(archivo))
+            {
+                strwriter.WriteLine("{0}", historialString);
+                strwriter.Close();
+            }
+        }
+        public List<Ganador> LeerGanador(string nombreArchivo)
+        {
+            string cadena;
+            string ruta=nombreArchivo;
+            using (var archivoOpnen= new FileStream(ruta, FileMode.Open))
+            {
+                using (var aux= new StreamReader(archivoOpnen))
+                {
+                    cadena= aux.ReadToEnd();
+                    archivoOpnen.Close();
+                }
+            }
+            var listadoGanadores= JsonSerializer.Deserialize<List<Ganador>>(cadena);
+            return listadoGanadores;
+        }
         public bool ExistenciaDeArchivo(string nombreArchivo)
         {
             if (File.Exists(nombreArchivo))

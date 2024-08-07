@@ -1,7 +1,7 @@
 // See https://aka.ms/new-console-template for more information
 
 using asciiArtString;
-
+using historialGanador;
 public class Batalla
 {
     
@@ -32,7 +32,6 @@ public class Batalla
         while (player.stats.Poblacion>0 && player2.stats.Poblacion>0)
         {   
            Console.WriteLine("\n\t ******------*****------RONDA N° "+rondas+" "+player.Nombre+" VS "+player2.Nombre+" -------******------*****");
-   //         Console.WriteLine("\t ataca "+player.Nombre+" defiende: "+player2.Nombre);
             danioProvocado=generadorDeDanio(player, player2);          
             player2.stats.Poblacion-=danioProvocado;
             if (player2.stats.Poblacion<0)
@@ -40,11 +39,8 @@ public class Batalla
                 player2.stats.Poblacion=0;
             }
             mensaje.mostrarResultadoRound(player, player2, danioProvocado);
- //           Console.WriteLine("daño provocado: "+danioProvocado);     
-//            Console.WriteLine("\t salud restante de "+player2.Nombre+": "+player2.stats.Poblacion);
             if (player2.stats.Poblacion>0)
             {
-            //    Console.WriteLine("\t ataca "+player2.Nombre+" defiende: "+player.Nombre);
                 danioProvocado= generadorDeDanio(player2, player);
                 player.stats.Poblacion-=danioProvocado;
                 if (player.stats.Poblacion<0)
@@ -52,18 +48,6 @@ public class Batalla
                     player.stats.Poblacion=0;
                 }
                 mensaje.mostrarResultadoRound( player2, player, danioProvocado);
-              //  Console.WriteLine("\t daño provocado: "+danioProvocado2);
-                //Console.WriteLine("\t salud restante de "+player.Nombre+": "+player.stats.Poblacion);
-
-            }
-            
-            if (player.stats.Poblacion<0)
-            {
-                player.stats.Poblacion=0;
-            }
-            else if(player2.stats.Poblacion<0)
-            {
-                player2.stats.Poblacion=0;
             }
             Console.WriteLine("\n\t ******------*****------FIN DE LA RONDA "+rondas+"-------******------*****");
             Console.WriteLine("\n presione cualquier tecla para continuar\n");
@@ -151,11 +135,12 @@ public class Batalla
         var random= new Random();
         Provincia ganador= new Provincia();
         Provincia personaje1= new Provincia();
-        Provincia personaje2= new Provincia();;
+        Provincia personaje2= new Provincia();
         while (arg.Provincias.Count>1)
         {
             Console.WriteLine("jugador numero 1, seleccione su personaje\n");
             personaje1= seleccionDePersonaje(arg);
+            
             do
             {
                 Console.WriteLine("jugador numero 2, seleccione su personaje\n");
