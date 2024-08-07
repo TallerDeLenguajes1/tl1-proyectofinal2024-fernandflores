@@ -1,12 +1,12 @@
 // See https://aka.ms/new-console-template for more information
 public class Caracteristicas
 {
-    private double transportePublico; // velocidad
-    private double inteligencia; //destreza
-    private double fuerzasArmada; //fuerza 
-    private double calidadDeVida;//nivel
-    private double sistemaDeSalud; // armadura
-    private double poblacion; // salud
+    private int transportePublico; // velocidad
+    private int inteligencia; //destreza
+    private int fuerzasArmada; //fuerza 
+    private int calidadDeVida;//nivel
+    private int sistemaDeSalud; // armadura
+    private int poblacion; // salud
 
     public Caracteristicas() //constructor 0
     {
@@ -18,7 +18,7 @@ public class Caracteristicas
         poblacion=0;
     }
 
-    public Caracteristicas(double transportePublico, double inteligencia, double fuerzasArmada, double calidadDeVida, double sistemaDeSalud, double poblacion)
+    public Caracteristicas(int transportePublico, int inteligencia, int fuerzasArmada, int calidadDeVida, int sistemaDeSalud, int poblacion)
     { //constructor
         this.transportePublico=transportePublico;
         this.inteligencia= inteligencia;
@@ -28,10 +28,10 @@ public class Caracteristicas
         this.poblacion= poblacion;
     }
 
-    public double TransportePublico { get => transportePublico; set => transportePublico = value; }
-    public double Inteligencia { get => inteligencia; set => inteligencia = value; }
-    public double FuerzasArmada { get => fuerzasArmada; set => fuerzasArmada = value; }
-    public double CalidadDeVida { get => calidadDeVida; set => calidadDeVida = value; }
-    public double SistemaDeSalud { get => sistemaDeSalud; set => sistemaDeSalud = value; }
-    public double Poblacion { get => poblacion; set => poblacion = value; }
+    public int TransportePublico { get => transportePublico; set => transportePublico = value; }
+    public int Inteligencia { get => inteligencia; set => inteligencia = value; }
+    public int FuerzasArmada { get => fuerzasArmada; set => fuerzasArmada = value; }
+    public int CalidadDeVida { get => calidadDeVida; set => calidadDeVida = value; }
+    public int SistemaDeSalud { get => sistemaDeSalud; set => sistemaDeSalud = value; }
+    public int Poblacion { get => poblacion; set => poblacion = value; }
 }

@@ -14,12 +14,10 @@ namespace cargadoDeJuego
          var argentina= new argentApi();
          if (archivoJson.ExistenciaDeArchivo("guardadoNuevo.txt"))
          {
-            Console.WriteLine("existe el archivo");
             argentina= archivoJson.LeerPersonajes("guardadoNuevo.txt");
          }
          else
          {
-            Console.WriteLine("no existe el archivo");
             argentina= await servicioAPI.GetArgentoAsync();
             argentina.crearPersonajesAleatorios(argentina.Provincias);
             archivoJson.GuardarPersonaje(argentina, "guardadoNuevo"); //guardar las clases en archivo json
