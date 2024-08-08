@@ -7,6 +7,8 @@ public class Caracteristicas
     private int calidadDeVida;//nivel
     private int sistemaDeSalud; // armadura
     private int poblacion; // salud
+    public int danioRecibido=0;
+    public int danioProvocado=0;
 
     public Caracteristicas() //constructor 0
     {

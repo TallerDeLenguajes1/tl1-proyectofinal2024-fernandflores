@@ -1,4 +1,6 @@
 // See https://aka.ms/new-console-template for more information
+using historialGanador;
+
 namespace asciiArtString
 {
    public class Mensajes
@@ -70,18 +72,19 @@ namespace asciiArtString
       Console.ResetColor();
       Console.WriteLine("\n\t\t     FIN DEL TURNO");
     }
-    public void mostrarResultadoPelea(Provincia ganador, Provincia perdedor, int rondas, int saludRestante)
+    public void mostrarResultadoPelea(Provincia ganador, Provincia perdedor)
     {
       var random= new Random();
       int i= random.Next(0,itemsPerdedor.Length-1);
+      int saludRestante= ganador.stats.Poblacion-8- ganador.stats.danioRecibido;
       Console.WriteLine("\n\t\t>>>>>>>>>>>> PELEA FINALIZADA <<<<<<<<<<<<<<<<<");
       Console.ForegroundColor=ConsoleColor.Blue;
       Console.WriteLine("Gano la provincia de: "+ganador.Nombre+" poblacion restante: "+saludRestante);
+      Console.WriteLine("Total daño provado: "+ganador.stats.danioProvocado+"\tTotal daño recibido: "+ganador.stats.danioRecibido);
       Console.ResetColor();
       Console.ForegroundColor=ConsoleColor.Red;
-      Console.WriteLine("La provincia perdedora es: "+perdedor.Nombre);
+      Console.WriteLine("\nLa provincia perdedora es: "+perdedor.Nombre);
       Console.ResetColor();
-      Console.WriteLine("total de rounds: "+(rondas-1));
       Console.WriteLine("\n");
       Console.WriteLine("Por generosidad de nuestro admin hemos decidido premiar al ganador reviviendo a su poblacion y con una mejora en sus estadisticas.");
       Console.WriteLine("las nuevas estadisticas de la provincia de "+ganador.Nombre+" son:");
@@ -89,7 +92,7 @@ namespace asciiArtString
       Console.WriteLine("coeficiente intelectual de la poblacion (destreza): "+ganador.stats.Inteligencia);
       Console.WriteLine("calidad de vida (nivel): "+ganador.stats.CalidadDeVida);
       Console.WriteLine("sistema de salud (armadura): "+ganador.stats.SistemaDeSalud);
-      Console.WriteLine("poblacion: (salud)"+ganador.stats.Poblacion);
+      Console.WriteLine("poblacion(salud): "+ganador.stats.Poblacion+"(recuperada y +8)");
       Console.WriteLine("\n\t\t>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<");
       Console.WriteLine("\n");
       Console.WriteLine("nuestro admin a decidido que una provincia perdedora no puede formar parte de este gran pais, por lo que "+perdedor.Nombre+" fue vendido a Uruguay por "+itemsPerdedor[i]);
@@ -100,6 +103,23 @@ namespace asciiArtString
       var random= new Random();
       int i= random.Next(0,itemsPerdedor.Length);
       Console.WriteLine("Perdiste por porteño, nada eso...");
+    }
+    public void mostrarHistorial(List<Ganador> historial)
+    {
+      foreach (var ganador in historial)
+      {
+        Console.WriteLine(ganador.NombreGanador);
+        Console.WriteLine("se enfrento a: ");
+        foreach (var item in ganador.HistorialDeDerrotados)
+        {
+          Console.WriteLine(item);
+        }
+        Console.WriteLine(ganador.NombreGanador+" jugo con las provincias: ");
+        foreach (var item in ganador.HistorialDePj)
+        {
+          Console.WriteLine(item);
+        }
+      }
     }
     }  
 }

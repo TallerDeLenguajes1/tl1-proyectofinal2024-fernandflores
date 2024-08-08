@@ -10,7 +10,7 @@ namespace cargadoDeJuego
       public  async Task<argentApi> InicializacionDeJuego() // como estamos esperando una repuesta de la api o bien de la lectura de un archivo usamos task
       {
          var servicioAPI= new Api();
-         var archivoJson= new PersonajeJson();
+         var archivoJson= new ArchivosJson();
          var argentina= new argentApi();
          if (archivoJson.ExistenciaDeArchivo("guardadoNuevo.txt"))
          {

@@ -23,17 +23,32 @@ public class Batalla
         ganador.stats.FuerzasArmada+=2;
         ganador.stats.CalidadDeVida++;
     }
+    public void eliminarPerdedor(Provincia ganador, Provincia player1, Provincia player2, List<Provincia>provincias)
+    {
+        if (ganador.Id==player1.Id)
+        {
+            provincias.Remove(player2);
+        }
+        else if(ganador.Id==player2.Id)
+        {
+            provincias.Remove(player1);
+        }
+    }
     public Provincia genedaroDePelea(Provincia player, Provincia player2, List<Provincia> provincias)
     {
         var mensaje= new Mensajes();
-        int danioProvocado=0;
-        int rondas=1;
-        int saludRestante=0;
+        int danioProvocado, rondas=1, poblacionPlayer1=player.stats.Poblacion, poblacionPlayer2=player2.stats.Poblacion;
+        player.stats.danioProvocado=0;
+        player.stats.danioRecibido=0;
+        player2.stats.danioProvocado=0;
+        player2.stats.danioRecibido=0;
         while (player.stats.Poblacion>0 && player2.stats.Poblacion>0)
         {   
-           Console.WriteLine("\n\t ******------*****------RONDA N° "+rondas+" "+player.Nombre+" VS "+player2.Nombre+" -------******------*****");
+            Console.WriteLine("\n\t ******------*****------RONDA N° "+rondas+" "+player.Nombre+" VS "+player2.Nombre+" -------******------*****");
             danioProvocado=generadorDeDanio(player, player2);          
+            player.stats.danioProvocado+= danioProvocado; //sumamos al campo danio provocado los daños totales
             player2.stats.Poblacion-=danioProvocado;
+            player2.stats.danioRecibido+=danioProvocado; //sdas
             if (player2.stats.Poblacion<0)
             {
                 player2.stats.Poblacion=0;
@@ -42,6 +57,8 @@ public class Batalla
             if (player2.stats.Poblacion>0)
             {
                 danioProvocado= generadorDeDanio(player2, player);
+                player2.stats.danioProvocado+=danioProvocado;
+                player.stats.danioRecibido+=danioProvocado;
                 player.stats.Poblacion-=danioProvocado;
                 if (player.stats.Poblacion<0)
                 {
@@ -54,27 +71,16 @@ public class Batalla
             rondas++;
             Console.ReadKey();
         }
-        if (player.stats.Poblacion<=0 && player2.stats.Poblacion>0) //si perdemos
+        if (player.stats.Poblacion<=0 && player2.stats.Poblacion>0) //si gana player2
         {
-            player.stats.Poblacion=0; // por si hubiera quedado en num negativo
-            saludRestante= player2.stats.Poblacion;
-            player2.stats.Poblacion=100;
-            generadorDeRecompensa(player2);
-            mensaje.mostrarResultadoPelea(player2, player, rondas, saludRestante); 
-            provincias.Remove(player);
+            player2.stats.Poblacion=poblacionPlayer2;
             return player2;
         }
-        else // si ganaramos
+        else // si gana player 1
         {
-            player2.stats.Poblacion=0;
-            saludRestante=player.stats.Poblacion;
-            player.stats.Poblacion=100;
-            generadorDeRecompensa(player);
-            mensaje.mostrarResultadoPelea(player, player2, rondas, saludRestante);
-            provincias.Remove(player2);
+            player.stats.Poblacion=poblacionPlayer1;
             return player;
         }
-
     }
     public Provincia seleccionDePersonaje(argentApi arg)
     {
@@ -129,10 +135,13 @@ public class Batalla
         Console.WriteLine("presione cualquier tecla para continuar");
         Console.ReadKey();
     }
-    public void gamePlay(argentApi arg)
+    public void gamePlay(argentApi arg, List<Ganador> historial)
     {
-        
-        var random= new Random();
+
+        var historialPlayer1= new List<string>();
+        var historialPlayer2= new List<string>();
+        var final= new Ganador();
+        var mensaje= new Mensajes();
         Provincia ganador= new Provincia();
         Provincia personaje1= new Provincia();
         Provincia personaje2= new Provincia();
@@ -140,31 +149,45 @@ public class Batalla
         {
             Console.WriteLine("jugador numero 1, seleccione su personaje\n");
             personaje1= seleccionDePersonaje(arg);
-            
+            if(!historialPlayer1.Contains(personaje1.Nombre))historialPlayer1.Add(personaje1.Nombre);
             do
             {
                 Console.WriteLine("jugador numero 2, seleccione su personaje\n");
                 personaje2= seleccionDePersonaje(arg);
+                if(!historialPlayer2.Contains(personaje2.Nombre))historialPlayer2.Add(personaje2.Nombre);
                 if(personaje1.Id==personaje2.Id)Console.WriteLine("debe elegir personajes distintos\n");
             } while (personaje1.Id==personaje2.Id);
             if (personaje1.Id=="02" || personaje2.Id=="42" || personaje1.Id=="42" || personaje2.Id=="02")
             {
                 casoParticular(personaje1, personaje2, arg.Provincias);
-              
             }
             else
             {
                 ganador= genedaroDePelea(personaje1, personaje2, arg.Provincias);
+               // saludRestante= ganador.stats.Poblacion;
+                generadorDeRecompensa(ganador);
+                if (ganador.Id==personaje1.Id)
+                {
+                    mensaje.mostrarResultadoPelea(ganador, personaje2);
+                    arg.Provincias.Remove(personaje2);
+                }
+                else
+                {
+                    mensaje.mostrarResultadoPelea(ganador, personaje1);
+                    arg.Provincias.Remove(personaje1);
+                }
             }
             Console.ReadKey();
         }
         if (ganador.Id==personaje1.Id)
         {
             Console.WriteLine("ganaste wacho p1");
+            final.agregarAlHistorial(historialPlayer1,historialPlayer2,historial);
         }
         else if(ganador.Id==personaje2.Id)
         {
             Console.WriteLine("ganaste maquina p2");
+            final.agregarAlHistorial(historialPlayer2,historialPlayer1, historial);
         }
     }
 }

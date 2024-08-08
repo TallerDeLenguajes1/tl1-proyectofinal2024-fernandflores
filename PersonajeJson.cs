@@ -6,7 +6,7 @@ namespace archivosJson
 {
     using historialGanador;
     // EN ESTE ARCHIVO TRABAJAMOS LOS ARCHIVOS JSON PARA  CREARLOS Y GUARDARLOS O LEERLOS 
-    public class PersonajeJson
+    public class ArchivosJson
     {
         public string CrearArchivoJson(argentApi dato)
         {
@@ -44,7 +44,7 @@ namespace archivosJson
         public void GuardarGanador(List<Ganador> dato, string nombreArchivo)
         {
             string historialString= CrearArchivoHistorialJson(dato);
-            FileStream archivo= new FileStream(nombreArchivo+".txt", FileMode.Append);
+            FileStream archivo= new FileStream(nombreArchivo+".txt", FileMode.Create);
             using (StreamWriter strwriter= new StreamWriter(archivo))
             {
                 strwriter.WriteLine("{0}", historialString);

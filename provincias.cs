@@ -17,10 +17,6 @@
 
     public class argentApi //fabrica de personajes (CLASE PRINCIPAL)
     {
-        [JsonPropertyName("cantidad")]
-        public int Cantidad { get; set; }
-
-
         [JsonPropertyName("provincias")]
         public List<Provincia> Provincias { get; set; }
 
