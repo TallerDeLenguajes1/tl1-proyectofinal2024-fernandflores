@@ -1,8 +1,7 @@
    // See https://aka.ms/new-console-template for more information
-namespace menu
+namespace FuncionesDelJuego
 {
     using System.IO.Compression;
-    using asciiArtString;
    public class Menu
    {
       public void mostrarMenu()
@@ -18,6 +17,7 @@ namespace menu
          Console.WriteLine("2: elegir y pelear (cuidado si sos porteño...)");
          Console.WriteLine("2: mural de heroes");   
          Console.WriteLine("--------------------------------------------\n");   
+         Console.WriteLine("\n\t\tseleccione una opcion\n");
       }
    }  
 }

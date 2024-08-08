@@ -1,7 +1,7 @@
 // See https://aka.ms/new-console-template for more information
 
 using APIS;
-using archivosJson;
+using FuncionesDelJuego;
 //Console.ReadKey();
 namespace cargadoDeJuego
    {
@@ -12,15 +12,16 @@ namespace cargadoDeJuego
          var servicioAPI= new Api();
          var archivoJson= new ArchivosJson();
          var argentina= new argentApi();
-         if (archivoJson.ExistenciaDeArchivo("guardadoNuevo.txt"))
+         string nombreArchivo="listadoDeProvincias.json";
+         if (archivoJson.ExistenciaDeArchivo(nombreArchivo))
          {
-            argentina= archivoJson.LeerPersonajes("guardadoNuevo.txt");
+            argentina= archivoJson.LeerPersonajes(nombreArchivo);
          }
          else
          {
             argentina= await servicioAPI.GetArgentoAsync();
             argentina.crearPersonajesAleatorios(argentina.Provincias);
-            archivoJson.GuardarPersonaje(argentina, "guardadoNuevo"); //guardar las clases en archivo json
+            archivoJson.GuardarPersonaje(argentina, nombreArchivo); //guardar las clases en archivo json
          }
          return argentina;
       }

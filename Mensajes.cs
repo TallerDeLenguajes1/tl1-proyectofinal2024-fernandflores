@@ -1,7 +1,6 @@
 // See https://aka.ms/new-console-template for more information
-using historialGanador;
 
-namespace asciiArtString
+namespace FuncionesDelJuego
 {
    public class Mensajes
    {
@@ -97,6 +96,7 @@ namespace asciiArtString
       Console.WriteLine("\n");
       Console.WriteLine("nuestro admin a decidido que una provincia perdedora no puede formar parte de este gran pais, por lo que "+perdedor.Nombre+" fue vendido a Uruguay por "+itemsPerdedor[i]);
       Console.WriteLine("\n");
+      Console.WriteLine("presione cualquier tecla para continuar\n");
     }
     public void mensajePortenio()
     {
@@ -104,20 +104,23 @@ namespace asciiArtString
       int i= random.Next(0,itemsPerdedor.Length);
       Console.WriteLine("Perdiste por porteño, nada eso...");
     }
-    public void mostrarHistorial(List<Ganador> historial)
+    public void mostrarHistorial(List<Historial> historial)
     {
+      int aux=0;
       foreach (var ganador in historial)
       {
-        Console.WriteLine(ganador.NombreGanador);
-        Console.WriteLine("se enfrento a: ");
+        aux++;
+        Console.WriteLine("\n CAMPEON N° "+aux);
+        Console.WriteLine("\n\t\t~nombre: "+ganador.NombreGanador);
+        Console.WriteLine("\n\t\t~Se enfrento a: \n");
         foreach (var item in ganador.HistorialDeDerrotados)
         {
-          Console.WriteLine(item);
+          Console.WriteLine("\t"+item);
         }
-        Console.WriteLine(ganador.NombreGanador+" jugo con las provincias: ");
+        Console.WriteLine("\n\t\tjugo con las provincias: \n");
         foreach (var item in ganador.HistorialDePj)
         {
-          Console.WriteLine(item);
+          Console.WriteLine("\t"+item);
         }
       }
     }

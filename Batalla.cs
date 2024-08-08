@@ -1,7 +1,8 @@
 // See https://aka.ms/new-console-template for more information
 
-using asciiArtString;
-using historialGanador;
+
+using FuncionesDelJuego;
+
 public class Batalla
 {
     
@@ -9,7 +10,7 @@ public class Batalla
     {
         int constante=500;
         var random= new Random();
-        int efectividad= random.Next(1,100);
+        int efectividad= random.Next(40,100);
         Provincia atacante= personaje1;
         Provincia defensor= personaje2;
         int ataque= atacante.stats.Inteligencia*atacante.stats.FuerzasArmada*atacante.stats.CalidadDeVida;
@@ -133,26 +134,25 @@ public class Batalla
             lista.Remove(p2);
         }
         Console.WriteLine("presione cualquier tecla para continuar");
-        Console.ReadKey();
     }
-    public void gamePlay(argentApi arg, List<Ganador> historial)
+    public void gamePlay(argentApi arg)
     {
 
         var historialPlayer1= new List<string>();
         var historialPlayer2= new List<string>();
-        var final= new Ganador();
+        var historial= new Historial();
         var mensaje= new Mensajes();
         Provincia ganador= new Provincia();
         Provincia personaje1= new Provincia();
         Provincia personaje2= new Provincia();
         while (arg.Provincias.Count>1)
         {
-            Console.WriteLine("jugador numero 1, seleccione su personaje\n");
+            Console.WriteLine("\n\njugador numero 1, seleccione su personaje\n");
             personaje1= seleccionDePersonaje(arg);
             if(!historialPlayer1.Contains(personaje1.Nombre))historialPlayer1.Add(personaje1.Nombre);
             do
             {
-                Console.WriteLine("jugador numero 2, seleccione su personaje\n");
+                Console.WriteLine("\n\njugador numero 2, seleccione su personaje\n");
                 personaje2= seleccionDePersonaje(arg);
                 if(!historialPlayer2.Contains(personaje2.Nombre))historialPlayer2.Add(personaje2.Nombre);
                 if(personaje1.Id==personaje2.Id)Console.WriteLine("debe elegir personajes distintos\n");
@@ -182,12 +182,12 @@ public class Batalla
         if (ganador.Id==personaje1.Id)
         {
             Console.WriteLine("ganaste wacho p1");
-            final.agregarAlHistorial(historialPlayer1,historialPlayer2,historial);
+            historial.agregarAlHistorial(historialPlayer1,historialPlayer2);
         }
         else if(ganador.Id==personaje2.Id)
         {
             Console.WriteLine("ganaste maquina p2");
-            final.agregarAlHistorial(historialPlayer2,historialPlayer1, historial);
+            historial.agregarAlHistorial(historialPlayer2,historialPlayer1);
         }
     }
 }

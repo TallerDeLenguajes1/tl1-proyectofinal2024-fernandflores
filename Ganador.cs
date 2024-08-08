@@ -1,23 +1,24 @@
 // See https://aka.ms/new-console-template for more information
-namespace historialGanador
+
+namespace FuncionesDelJuego
 {
-    public class Ganador
+    public class Historial
     {
         private string nombreGanador;
         private List<string> historialDePj;
         private List<string> historialDeDerrotados;
         private int totalPj;
 
-        public Ganador()
+        public Historial()
         {
         }
 
-        public Ganador(string nombre, List<string>historialPj, List<string> historialDeDerrotados)
+        public Historial(string nombre, List<string>historialPj, List<string> historialDeDerrotados)
         {
             this.nombreGanador= nombre;
             this.historialDePj= historialPj;
             this.totalPj= historialDePj.Count;
-            this.HistorialDeDerrotados= historialDeDerrotados;
+            this.historialDeDerrotados= historialDeDerrotados;
         }
 
         public string NombreGanador { get => nombreGanador; set => nombreGanador = value; }
@@ -25,11 +26,13 @@ namespace historialGanador
         public int TotalPj { get => totalPj;}
         public List<string> HistorialDeDerrotados { get => historialDeDerrotados; set => historialDeDerrotados = value; }
 
-        public void agregarAlHistorial(List<string>historialPj, List<string>historialDerrotados, List<Ganador> historial)
+        public void agregarAlHistorial(List<string>historialPj, List<string>historialDerrotados)
         {
+            string archivo="historial.json";
+            var historial= new ArchivosJson();
             Console.WriteLine("\n\tvencedor escriba su nombre\n");
             string nombre=Console.ReadLine();
-            historial.Add(new Ganador(nombre, historialPj,historialDerrotados));
+            historial.GuardarGanador(new Historial(nombre, historialPj, historialDerrotados), archivo);
         }
     }
 }
