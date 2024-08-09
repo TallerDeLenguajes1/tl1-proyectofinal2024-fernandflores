@@ -1,6 +1,7 @@
 // See https://aka.ms/new-console-template for more information
 
 
+using System.Drawing;
 using FuncionesDelJuego;
 
 public class Batalla
@@ -24,17 +25,7 @@ public class Batalla
         ganador.stats.FuerzasArmada+=2;
         ganador.stats.CalidadDeVida++;
     }
-    public void eliminarPerdedor(Provincia ganador, Provincia player1, Provincia player2, List<Provincia>provincias)
-    {
-        if (ganador.Id==player1.Id)
-        {
-            provincias.Remove(player2);
-        }
-        else if(ganador.Id==player2.Id)
-        {
-            provincias.Remove(player1);
-        }
-    }
+
     public Provincia genedaroDePelea(Provincia player, Provincia player2, List<Provincia> provincias)
     {
         var mensaje= new Mensajes();
@@ -135,6 +126,68 @@ public class Batalla
         }
         Console.WriteLine("presione cualquier tecla para continuar");
     }
+    public void gamePlay1(argentApi arg)
+    {
+        var historialPlayer= new List<string>();
+        var historialCPU= new List<string>();
+        var mensaje= new Mensajes();
+        Provincia ganador= new Provincia();
+        Provincia player= new Provincia();
+        Provincia cpu= new Provincia();
+        var random= new Random();
+        var historial= new Historial();
+        Console.WriteLine("\n\njugador elija su personaje\n");
+        player=seleccionDePersonaje(arg);
+        historialPlayer.Add(player.Nombre);
+        player.stats.FuerzasArmada+=1;
+        bool vivo= true;
+        while (arg.Provincias.Count>1 && vivo)
+        {
+            do
+            {
+                int indice= random.Next(0,(arg.Provincias.Count));
+                cpu= arg.Provincias[indice];
+            }while(cpu.Id==player.Id);
+            if(!historialCPU.Contains(cpu.Nombre))historialCPU.Add(cpu.Nombre);
+
+            if (player.Id=="02" || cpu.Id=="02" || player.Id=="42" || cpu.Id=="42")
+            {
+                casoParticular(player, cpu, arg.Provincias);
+                if (player.Id=="02" || player.Id=="42")
+                {
+                    vivo=false;
+                }
+
+                Console.ReadKey();
+            }
+            else
+            {
+                ganador=genedaroDePelea(player, cpu, arg.Provincias);
+                generadorDeRecompensa(ganador);
+                if (ganador.Id==player.Id)
+                {
+                    mensaje.mostrarResultadoPelea(ganador, cpu);
+                    arg.Provincias.Remove(cpu);
+                    Console.WriteLine("\n\t\tPersonajes Restantes: \n");
+                    arg.mostrarProvincias(arg.Provincias);
+                }
+                else
+                {
+                    mensaje.mostrarResultadoPelea(ganador, player);
+                    arg.Provincias.Remove(player);
+                    vivo= false;
+                    mensaje.mensajeDerrotaSolo(cpu);
+                }
+            }
+        }
+        if(vivo)
+        {
+            Console.WriteLine("Jugador usted ha ganado\n");
+            mensaje.mensajeVictoria("Jugador");
+            Console.ReadKey();
+            historial.agregarAlHistorial(historialPlayer,historialCPU);
+        }
+    }
     public void gamePlay(argentApi arg)
     {
 
@@ -181,12 +234,12 @@ public class Batalla
         }
         if (ganador.Id==personaje1.Id)
         {
-            Console.WriteLine("ganaste wacho p1");
+            mensaje.mensajeVictoria("Jugador 1");
             historial.agregarAlHistorial(historialPlayer1,historialPlayer2);
         }
         else if(ganador.Id==personaje2.Id)
         {
-            Console.WriteLine("ganaste maquina p2");
+            mensaje.mensajeVictoria("Jugador 2");
             historial.agregarAlHistorial(historialPlayer2,historialPlayer1);
         }
     }

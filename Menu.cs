@@ -13,9 +13,10 @@ namespace FuncionesDelJuego
          Console.WriteLine(mensaje.menu2);
          Console.WriteLine(mensaje.menu3);
          Console.WriteLine("-------------------MENU--------------------");
-         Console.WriteLine("1: Partida Rapida");
-         Console.WriteLine("2: elegir y pelear (cuidado si sos porteño...)");
-         Console.WriteLine("2: mural de heroes");   
+         Console.WriteLine("1: Partida Rapida (1 jugador)");
+         Console.WriteLine("2: Dos jugadores");
+         Console.WriteLine("3: Historoial");
+         Console.WriteLine("0: salir");   
          Console.WriteLine("--------------------------------------------\n");   
          Console.WriteLine("\n\t\tseleccione una opcion\n");
       }

@@ -104,23 +104,45 @@ namespace FuncionesDelJuego
       int i= random.Next(0,itemsPerdedor.Length);
       Console.WriteLine("Perdiste por porteño, nada eso...");
     }
+    public void mensajeDerrotaSolo(Provincia cpu)
+    {
+      Console.ForegroundColor=ConsoleColor.Red;
+      Console.WriteLine("\n\t\tJAJAAJAJA TE MATO UN BOT JAJAJAAJA!!\n");
+      Console.ResetColor();
+      Console.WriteLine("-Jugador usted a perdido contra el bot de "+cpu.Nombre);
+      Console.WriteLine("-usted no es digno de entrar al historial de campeones, vuelva a intentarlo\n");
+      Console.WriteLine("volviendo a menu...");
+      Thread.Sleep(6000);
+
+    }
+    public void mensajeVictoria(string jugador)
+    {
+      Console.WriteLine(jugador+" nuestro admin le ha concedido el honor de que su nombre y su historia se vuelvan inmortales.");
+      Console.WriteLine("a continuacion le diremos los pasos a seguir, desde ahora su legado sera eterno. Muchas gracias por jugar");
+    }
     public void mostrarHistorial(List<Historial> historial)
     {
       int aux=0;
       foreach (var ganador in historial)
       {
         aux++;
+        Console.ForegroundColor=ConsoleColor.DarkBlue;
         Console.WriteLine("\n CAMPEON N° "+aux);
+        Console.WriteLine(" ~~~~~~~~~~~~~");
+        Console.ForegroundColor=ConsoleColor.DarkMagenta;
         Console.WriteLine("\n\t\t~nombre: "+ganador.NombreGanador);
-        Console.WriteLine("\n\t\t~Se enfrento a: \n");
+        Console.ResetColor();
+        Console.WriteLine("\n\t\tSe enfrento a: ");
+        Console.WriteLine("\t\t--------------\n");
         foreach (var item in ganador.HistorialDeDerrotados)
         {
-          Console.WriteLine("\t"+item);
+          Console.WriteLine("\t- "+item);
         }
-        Console.WriteLine("\n\t\tjugo con las provincias: \n");
+        Console.WriteLine("\n\t\tjugo con las provincias: ");
+        Console.WriteLine("\t\t------------------------\n");
         foreach (var item in ganador.HistorialDePj)
         {
-          Console.WriteLine("\t"+item);
+          Console.WriteLine("\t>"+item);
         }
       }
     }
