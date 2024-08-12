@@ -1,12 +1,10 @@
 // See https://aka.ms/new-console-template for more information
 
 using cargadoDeJuego;
-
 namespace FuncionesDelJuego
 {
    public class EjecutarJuego
    {
-      
       public async Task Ejecutar()
       {
          var cargarJuego= new CargarJuego();
@@ -17,8 +15,9 @@ namespace FuncionesDelJuego
          var aux= new ArchivosJson();
          int opc;
          bool salir=false;
+
          msn.presentacion();
-               Console.Clear();
+         Console.Clear();
          do
          {
             menu.mostrarMenu();
