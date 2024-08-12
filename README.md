@@ -5,6 +5,29 @@
 
 # el proposito de la api utilizada en este codigo es la obtencion de los personajes. La api utilizada retorna una clase que contiene una lista con las 23 provincias y sus respectivos nombres.
 
+# Api.cs archivo de conexion a la api.
+
+# ArchivosJson.cs contiene las funciones de leer, guardar y existencia de archivos json
+
+# Batalla.cs contiene todas las funciones en lo que respecta al gameplay como seleccion de personajes, generador de daño, de pelea y los casos particulares (easter eggs) y tambien el gameplay de un jugador y dos jugadores.
+
+# Caracteristicas.cs contiene las caracteristicas de cada provincia junto a su constructor, se realizaron los siguientes cambios de nombre: velocidad = transporte publico, destreza = inteligencia, fuerza = fuerzas armadas, nivel = calidad de vida, armadura = sistema de slaud, salud = poblacion esto con el fin de hacer unas caracteristicas mas acordes a la tematica del juego
+
+# EjecutarJuego.cs lleva a cabo la tarea de leer la opcion a realizarse (basandose en el menu)
+
+# CargarJuego.cs revisa obtiene la lista de los personajes si el archivo de personajes existe, si es asi lo lee y sino hace la consulta a la api
+
+# Historial.cs contiene las funciones del historial
+
+# Mensajes.cs contiene los mensajes que se mostraran a lo largo del juego, realizado con el fin de no tener tanto codigo en los demas .cs
+
+# Menu.cs es el menu del juego con sus opciones y caracteristicas visuales
+
+# program.cs programa principal
+
+# provincia.cs la clase de los personajes, adaptada para tambien poder asi trabajar en conjunto con la api
+
+
 ## Opciones de menu:
 
 # 1 un jugador: un solo jugador elegira un personaje con el que ira hasta la victoria o la muerte. 
