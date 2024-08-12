@@ -111,12 +111,6 @@ namespace FuncionesDelJuego
       Console.WriteLine("presione cualquier tecla para continuar\n");
       Console.ReadKey();
     }
-    public void mensajePortenio()
-    {
-      var random= new Random();
-      int i= random.Next(0,itemsPerdedor.Length);
-      Console.WriteLine("Perdiste por porteño, nada eso...");
-    }
     public void mensajeDerrotaSolo(Provincia cpu)
     {
       Console.ForegroundColor=ConsoleColor.Red;
@@ -157,6 +151,26 @@ namespace FuncionesDelJuego
           Console.WriteLine("\t>"+item);
         }
       }
+    }
+    public void historialBorrado()
+    {
+      Console.BackgroundColor=ConsoleColor.DarkCyan;
+      Console.Clear();
+      Console.WriteLine("\n\n\n\n\n\n\n\n\n");
+      Console.WriteLine("\t\t\t\t\t\tHistorial borrado");
+      Console.WriteLine("\n\t\t\t\t\t\t volviendo al menu");
+      Thread.Sleep(2000);
+      Console.ResetColor();
+    }
+      public void resetGame()
+    {
+      Console.BackgroundColor=ConsoleColor.DarkCyan;
+      Console.Clear();
+      Console.WriteLine("\n\n\n\n\n\n\n\n\n");
+      Console.WriteLine("\t\t\t\t\t\tJuego reiniciado con exito");
+      Console.WriteLine("\n\t\t\t\t\t\t volviendo al menu");
+      Console.ResetColor();
+      Thread.Sleep(2000);
     }
     }  
 }

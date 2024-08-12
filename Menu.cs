@@ -15,6 +15,12 @@ namespace FuncionesDelJuego
          Console.WriteLine("\t\t\t\t\t\t1: Partida Rapida (1 jugador)");
          Console.WriteLine("\t\t\t\t\t\t2: Dos jugadores");
          Console.WriteLine("\t\t\t\t\t\t3: Historoial");
+         Console.WriteLine("\t\t\t\t\t\t4: Mostrar personajes");
+         Console.WriteLine("\n");
+         Console.WriteLine("t\t\t\t\t\t\tOPCIONES AVANZADAS:");
+         Console.WriteLine("t\t\t\t\t\t\t-------------------\n");
+         Console.WriteLine("\t\t\t\t\t\t5: Borrar historial");
+         Console.WriteLine("\t\t\t\t\t\t6: Resetear juego");
          Console.WriteLine("\t\t\t\t\t\t0: salir");   
          Console.ForegroundColor=ConsoleColor.DarkYellow;
          Console.WriteLine("\t\t\t\t\t\t*--*--*--*--*--*--*--*--*--*--*--*--*--*--*\n");   
@@ -22,4 +28,5 @@ namespace FuncionesDelJuego
          Console.ResetColor();
       }
    }  
+
 }

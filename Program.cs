@@ -3,9 +3,12 @@
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using System.Reflection.Emit;
-using cargadoDeJuego;
+//using cargadoDeJuego;
 using Microsoft.VisualBasic;
 using FuncionesDelJuego;
+var juego= new EjecutarJuego();
+await juego.Ejecutar();
+/*
 var cargarJuego= new CargarJuego();
 var batalla= new Batalla();
 var menu= new Menu();
@@ -52,8 +55,27 @@ do
             else
             {
                Console.WriteLine("\n\t\tNO EXISTEN CAMPEONES");
-               Thread.Sleep(2000);
+               Thread.Sleep(1500);
             }
+            break;
+         case 4:
+            if (aux.ExistenciaDeArchivo("listadoDeProvincias.json"))
+            {
+               argentina.mostrarProvincias(argentina.Provincias);
+            }
+            else
+            {
+               Console.WriteLine("no hay campeones disponibles, arranque una partida para generar los personajes");
+            }
+            break;
+         case 5: 
+            aux.EliminarArchivoJson("historial.json");
+            msn.historialBorrado();
+            break;
+         case 6:
+            aux.EliminarArchivoJson("historial.json");
+            aux.EliminarArchivoJson("listadoDeProvincias.json");
+            msn.resetGame();
             break;
          default:
             Console.ForegroundColor= ConsoleColor.Red;
@@ -72,3 +94,4 @@ do
       Thread.Sleep(1000);
    }
 } while (!salir);
+*/

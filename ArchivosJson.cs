@@ -13,8 +13,9 @@ namespace FuncionesDelJuego
         }
         public void GuardarPersonaje(argentApi dato, string nombreArchivo) //para usar lista solo cambiar List<Provincia> prov en lugar de argentApi y al usar mandar solo la lista como parametro 
         {  //GUARDA EL ARCHIVO JSON.TXT (SERIALIZACION)
+            string ruta= "archivos_json/"+nombreArchivo;
             string provstring= CrearArchivoJson(dato);
-            FileStream archivo= new FileStream(nombreArchivo, FileMode.Create);
+            FileStream archivo= new FileStream(ruta, FileMode.Create);
             using (StreamWriter strwriter= new StreamWriter (archivo))
             {
                 strwriter.WriteLine("{0}", provstring);
@@ -24,7 +25,7 @@ namespace FuncionesDelJuego
         public argentApi LeerPersonajes(string nombreArchivo) //CREA A PARTIR DEL ARCHIVO JSON.TXT LAS CLASES (DESERIALIZACION)
         {
             string cadenaPersonajes;
-            string ruta= nombreArchivo;
+            string ruta= "archivos_json/"+nombreArchivo;
             using (var archivoOpnen = new FileStream(ruta, FileMode.Open))
             {
                 using (var aux= new StreamReader(archivoOpnen))
@@ -42,7 +43,7 @@ namespace FuncionesDelJuego
         }
         public void GuardarGanador(Historial datoGanador, string nombreArchivo)
         {
-            string ruta= nombreArchivo;
+            string ruta= "archivos_json/"+nombreArchivo;
             var historial= new List<Historial>();
             if (ExistenciaDeArchivo(nombreArchivo))
             {
@@ -50,7 +51,7 @@ namespace FuncionesDelJuego
             }
             historial.Add(datoGanador);
             string historialString= CrearArchivoHistorialJson(historial);
-            FileStream archivo= new FileStream(nombreArchivo, FileMode.OpenOrCreate);
+            FileStream archivo= new FileStream(ruta, FileMode.OpenOrCreate);
             using (StreamWriter strwriter= new StreamWriter(archivo))
             {
                 strwriter.WriteLine("{0}", historialString);
@@ -60,7 +61,7 @@ namespace FuncionesDelJuego
         public List<Historial> LeerHistorial(string nombreArchivo)
         {
             string cadena;
-            string ruta=nombreArchivo;
+            string ruta="archivos_json/"+nombreArchivo;
             List<Historial> historial;
             using (var archivoOpnen= new FileStream(ruta, FileMode.Open))
             {
@@ -75,7 +76,8 @@ namespace FuncionesDelJuego
         }
         public bool ExistenciaDeArchivo(string nombreArchivo)
         {
-            if (File.Exists(nombreArchivo))
+            string ruta= "archivos_json/"+nombreArchivo;
+            if (File.Exists(ruta))
             {
                 return true;
             }
@@ -83,6 +85,11 @@ namespace FuncionesDelJuego
             {
                 return false;
             }
+        }
+        public void EliminarArchivoJson(string archivo)
+        {
+            string ruta="archivos_json//";
+            File.Delete(ruta+archivo);
         }
     }
 
