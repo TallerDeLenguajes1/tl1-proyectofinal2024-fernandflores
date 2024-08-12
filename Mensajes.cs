@@ -56,6 +56,17 @@ namespace FuncionesDelJuego
       }
       Console.ResetColor();
     }
+    public void presentacion()
+    {
+      var mensaje= new Mensajes();
+      mensaje.banderaArgentina();
+      Console.WriteLine("\n");
+      Console.WriteLine(mensaje.menu1);
+      Console.WriteLine(mensaje.menu2);
+      Console.WriteLine(mensaje.menu3);
+      Console.WriteLine("\n\t\t\t presione cualquier tecla\n");
+      Console.ReadKey();
+    }
     public void mostrarResultadoRound( Provincia player1, Provincia player2, int danioProvocado)
     {
       Console.WriteLine("\n\n\t \t TURNO DE: "+player1.Nombre+"\n");
@@ -91,12 +102,14 @@ namespace FuncionesDelJuego
       Console.WriteLine("coeficiente intelectual de la poblacion (destreza): "+ganador.stats.Inteligencia);
       Console.WriteLine("calidad de vida (nivel): "+ganador.stats.CalidadDeVida);
       Console.WriteLine("sistema de salud (armadura): "+ganador.stats.SistemaDeSalud);
-      Console.WriteLine("poblacion(salud): "+ganador.stats.Poblacion+"(recuperada y +8)");
+      Console.WriteLine("poblacion(salud): "+ganador.stats.Poblacion+"( recuperada y +4)");
+      Console.WriteLine("se aumento en uno fuerzas armadas (fuerza): "+ganador.stats.FuerzasArmada);
       Console.WriteLine("\n\t\t>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<");
       Console.WriteLine("\n");
       Console.WriteLine("nuestro admin a decidido que una provincia perdedora no puede formar parte de este gran pais, por lo que "+perdedor.Nombre+" fue vendido a Uruguay por "+itemsPerdedor[i]);
       Console.WriteLine("\n");
       Console.WriteLine("presione cualquier tecla para continuar\n");
+      Console.ReadKey();
     }
     public void mensajePortenio()
     {
@@ -111,13 +124,12 @@ namespace FuncionesDelJuego
       Console.ResetColor();
       Console.WriteLine("-Jugador usted a perdido contra el bot de "+cpu.Nombre);
       Console.WriteLine("-usted no es digno de entrar al historial de campeones, vuelva a intentarlo\n");
-      Console.WriteLine("volviendo a menu...");
-      Thread.Sleep(6000);
-
+      Console.WriteLine("presione una tecla para volver al menu...");
+      Console.ReadKey();
     }
     public void mensajeVictoria(string jugador)
     {
-      Console.WriteLine(jugador+" nuestro admin le ha concedido el honor de que su nombre y su historia se vuelvan inmortales.");
+      Console.WriteLine("\n"+jugador+" nuestro admin le ha concedido el honor de que su nombre y su historia se vuelvan inmortales.");
       Console.WriteLine("a continuacion le diremos los pasos a seguir, desde ahora su legado sera eterno. Muchas gracias por jugar");
     }
     public void mostrarHistorial(List<Historial> historial)

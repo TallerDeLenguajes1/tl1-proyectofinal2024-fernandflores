@@ -26,10 +26,15 @@ namespace FuncionesDelJuego
 
         public void agregarAlHistorial(List<string>historialPj, List<string>historialDerrotados)
         {
+            string nombre;
             string archivo="historial.json";
             var historial= new ArchivosJson();
             Console.WriteLine("\n\tvencedor escriba su nombre con el que sera recordado en el historial de campeones de campeones\n");
-            string nombre=Console.ReadLine();
+            do
+            {
+                nombre=Console.ReadLine();
+                if(nombre=="" || nombre==" " || nombre=="  ") Console.WriteLine("debe ingresar al menos una letra (ponele voluntad)");
+            }while(nombre==""|| nombre==" " || nombre=="  ");
             historial.GuardarGanador(new Historial(nombre, historialPj, historialDerrotados), archivo);
         }
     }

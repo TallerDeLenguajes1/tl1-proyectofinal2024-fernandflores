@@ -21,9 +21,9 @@ public class Batalla
     }
     public void generadorDeRecompensa(Provincia ganador)
     {
-        ganador.stats.Poblacion+=8;
-        ganador.stats.FuerzasArmada+=2;
-        ganador.stats.CalidadDeVida++;
+        ganador.stats.Poblacion+=4;
+        ganador.stats.FuerzasArmada++;
+        
     }
 
     public Provincia genedaroDePelea(Provincia player, Provincia player2, List<Provincia> provincias)
@@ -103,28 +103,29 @@ public class Batalla
         }
         else if (p1.Id!="42" && p2.Id=="02")
         {
-            Console.WriteLine("jugador numero 2: Perdiste por porteño, nada eso...");
+            Console.WriteLine("jugador numero 2: Perdiste por porteño, nada eso...\n");
             lista.Remove(p2);
         }
         else if(p1.Id=="42" && p2.Id!="02")
         {
             Console.WriteLine("Jugador 1: perdiste...");
-            Console.WriteLine("ERROR 404 PROVINCIA NOT FOUND");
+            Console.WriteLine("ERROR 404 PROVINCIA NOT FOUND\n");
             lista.Remove(p1);
         }
         else if(p1.Id!="02" && p2.Id=="42")
         {
             Console.WriteLine("Jugador 2: perdiste...");
-            Console.WriteLine("ERROR 404 PROVINCIA NOT FOUND");
+            Console.WriteLine("ERROR 404 PROVINCIA NOT FOUND\n");
             lista.Remove(p2);
         }
         else if(p1.Id=="02" && p2.Id=="42")
         {
-            Console.WriteLine("Jugadores, ambos eligieron las provincias incorrectas. Vuelvan a elegir personajes");
+            Console.WriteLine("\nJugadores, ambos eligieron las provincias incorrectas. Vuelvan a elegir personajes");
             lista.Remove(p1);
             lista.Remove(p2);
         }
-        Console.WriteLine("presione cualquier tecla para continuar");
+        Console.WriteLine("\npresione cualquier tecla para continuar");
+        Console.ReadKey();
     }
     public void gamePlay1(argentApi arg)
     {
@@ -170,6 +171,9 @@ public class Batalla
                     arg.Provincias.Remove(cpu);
                     Console.WriteLine("\n\t\tPersonajes Restantes: \n");
                     arg.mostrarProvincias(arg.Provincias);
+                    Console.WriteLine("presione cualquier tecla para continuar");
+                    Console.WriteLine();
+                    Console.ReadKey();
                 }
                 else
                 {
@@ -177,6 +181,7 @@ public class Batalla
                     arg.Provincias.Remove(player);
                     vivo= false;
                     mensaje.mensajeDerrotaSolo(cpu);
+                    
                 }
             }
         }
@@ -230,7 +235,6 @@ public class Batalla
                     arg.Provincias.Remove(personaje1);
                 }
             }
-            Console.ReadKey();
         }
         if (ganador.Id==personaje1.Id)
         {

@@ -6,19 +6,20 @@ namespace FuncionesDelJuego
    {
       public void mostrarMenu()
       {
-         var mensaje= new Mensajes();
-         mensaje.banderaArgentina();
-         Console.WriteLine("\n");
-         Console.WriteLine(mensaje.menu1);
-         Console.WriteLine(mensaje.menu2);
-         Console.WriteLine(mensaje.menu3);
-         Console.WriteLine("-------------------MENU--------------------");
-         Console.WriteLine("1: Partida Rapida (1 jugador)");
-         Console.WriteLine("2: Dos jugadores");
-         Console.WriteLine("3: Historoial");
-         Console.WriteLine("0: salir");   
-         Console.WriteLine("--------------------------------------------\n");   
-         Console.WriteLine("\n\t\tseleccione una opcion\n");
+         Console.BackgroundColor=ConsoleColor.DarkCyan;
+         Console.Clear();
+         Console.ForegroundColor=ConsoleColor.DarkYellow;
+         Console.WriteLine("\n\n\n\n\n\n\n\n\n");
+         Console.WriteLine("\t\t\t\t\t\t*--*--*--*--*--*--*--MENU--*--*--*--*--*--*");
+         Console.ForegroundColor=ConsoleColor.White;
+         Console.WriteLine("\t\t\t\t\t\t1: Partida Rapida (1 jugador)");
+         Console.WriteLine("\t\t\t\t\t\t2: Dos jugadores");
+         Console.WriteLine("\t\t\t\t\t\t3: Historoial");
+         Console.WriteLine("\t\t\t\t\t\t0: salir");   
+         Console.ForegroundColor=ConsoleColor.DarkYellow;
+         Console.WriteLine("\t\t\t\t\t\t*--*--*--*--*--*--*--*--*--*--*--*--*--*--*\n");   
+         Console.Write("\n\t\t\t\t\t\tseleccione una opcion: ");
+         Console.ResetColor();
       }
    }  
 }

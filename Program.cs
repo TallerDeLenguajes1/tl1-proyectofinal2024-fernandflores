@@ -14,6 +14,8 @@ var historial= new List<Historial>();
 var aux= new ArchivosJson();
 int opc;
 bool salir=false;
+msn.presentacion();
+Console.Clear();
 do
 {
    menu.mostrarMenu();
@@ -30,10 +32,14 @@ do
             break;
          case 1:
             Console.Clear();
+            batalla.gamePlay1(argentina);
+            break;
            
+         case 2:
+            Console.Clear();
             batalla.gamePlay(argentina);
             break;
-         case 2:
+         case 3:
             Console.Clear();
             string archivo="historial.json";
             if (aux.ExistenciaDeArchivo(archivo))
@@ -49,20 +55,20 @@ do
                Thread.Sleep(2000);
             }
             break;
-         case 3:
-            batalla.gamePlay1(argentina);
-            break;
          default:
-            Console.Clear();
-            Console.WriteLine("debe ingresar una opcion valida");
-            Thread.Sleep(2000);
+            Console.ForegroundColor= ConsoleColor.Red;
+            Console.Write("\t\t\t\t\t\t\t\tdebe ingresar una opcion valida");
+            Console.ResetColor();
+            Thread.Sleep(1000);
             break;
 
       }
    }
    else
    {
-      Console.WriteLine("Opcion erronea");
-      Thread.Sleep(2000);
+      Console.ForegroundColor=ConsoleColor.Red;
+      Console.Write("\t\t\t\t\t\t\t\tOpcion erronea");
+      Console.ResetColor();
+      Thread.Sleep(1000);
    }
 } while (!salir);
