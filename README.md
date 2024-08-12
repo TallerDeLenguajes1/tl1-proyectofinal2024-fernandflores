@@ -1,7 +1,7 @@
 
 # BATALLA DE PROVINCIAS
 
-# Es un juego donde de las 23 provincias obtenemos 8 de manera aleatorias, 2 ya estan precreadas (CABA y La Pampa) ya que perderan automaticamente mostrando un mensaje en particular, el juego sigue las consignas del proyecto. Eliminando de la lista a cada personaje una vez que sea derrotado y agregarndo al victorioso en el historial (salvo que se trate de la cpu). 
+# Es un juego donde de las 23 provincias obtenemos 8 de manera aleatorias, 2 ya estan precreadas (CABA y La Pampa) ya que perderan automaticamente mostrando un mensaje en particular, el juego sigue las consignas del proyecto. Eliminando de la lista a cada personaje una vez que sea derrotado y agregarndo al victorioso en el historial (salvo que se trate de la cpu). El sistema de combate es el mismo que el propuesto, salvo por una leve variacion en el rango de aleatoriedad de la efectividad llevandola del intervalo (1,100) a (40,100) para poder tener asi combates mas cortos.
 
 # el proposito de la api utilizada en este codigo es la obtencion de los personajes. La api utilizada retorna una clase que contiene una lista con las 23 provincias y sus respectivos nombres.
 
